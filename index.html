@@ -1,3 +1,46 @@
+<!--Design by Cotpear _Start-->
+請輸入密碼，以顯示內容。
+<input id="EPassword">
+<button onclick="multiDecrypt($('#EPassword').val())">解密</button>
+<script>
+    var encryption = [
+            "U2FsdGVkX1/RhzFKw7Jqg9C/trAUVFxfcf4gSVWGoZCeVJ9+zIzfg0jg0gV72LRdVm7LEnJwen8e/EP37P9s4d8vQRpKFKlvce3sEi7farfB3iaiWLF2uYEyJAodWM/Kvsq0I4L7fGIuGSwK+oQHDXciFPFWFRE4jkqcMFfIQi9Ba28tX5fYAswj9jtwffuqtkZoPcxQAPliY6er8Hn4UsKI+TtfJsTTYc3IR35tRNd1gs8/P9tOj46oG4I1QAtzkArOC8luFMoF5VSp3mrycgCjT3axC2oeDkOaIFM1Ce1yzM+my8JpDovQv1FQiwRi4MqUgTYFXWaGYsvvdDlojRV4e32pxsR9umxZgK4oeA/s95H+O3IMiR9FhOpRzcq1ByG7ajOoBUW6QU7PZi4jKie4TU8STnT5UQiUsq6y2S8A4ozTAGSMIAK7jzHTxRKdcNpGr/9CYCwTEfZnpwOpZyAd6zMMfkVBZdVCYRPmR7iqiO3lNMqybgFXDrDK6aFksasOp8/aDE+U+Yv0fH5fe95QnKZj1wQQ07VrIsCpEksIycIkSst/2tNxbjAT4o2G0jwY2UUdEG9ueYfmuAJAuGZ2rDHBQMmIFhponbV3kRRGhnl8V7xmPDwxJb0IN7rIH0TwHojYA+WNAL6EpPwJJJVO2BazXkJVxknn6TeVH3benFA3OZPebhc0eNw220goOLJNmuC8hq8II3VCOWYKTg1dUJaKzc3rlw/qOm6r5li4tERfP1Zw1kDD44d1v7pyWnvvsKPeh1ojQGwzZ/IcTwL1uP+NOPsb4BOHWNJQeHEvHRgsjjjr2fjl7aofjCWHAu7PVn/hNrKWUTsbxGpHk0l1R/iIjo+7wYqzFRsJlQc9Jb3uQn1W3IFpEEItIHI4xy79P9QokQVerU+9UsfvQZbscAzOBtEQlUM3eJe9KNnCjElydKh1UYXkQQjo4VgUjL+iaumtRfqLTYmoQe6c9g==",
+        ],
+        canDeCrypt = 0;
+    function multiDecrypt(pwd) {
+        encryption.forEach((item, i) => {
+            try {
+                canDeCrypt = Decrypt(item, pwd)
+            } catch (e) {
+                if (canDeCrypt == 0) {
+                    canDeCrypt = 0
+                }
+            }
+        })
+        if (canDeCrypt == 0) {
+            alert("密碼錯誤")
+        } else {
+            //ok
+            document.getElementById("result").innerHTML = canDeCrypt;
+        }
+    }
+    function Decrypt(item, pwd) {
+        return decodeURIComponent(
+            CryptoJS.AES.decrypt(
+                item, pwd
+            ).toString(CryptoJS.enc.Utf8)
+        )
+    }
+</script>
+<br />
+<br />
+<div id="result"></div>
+<!--Design by Cotpear _End-->
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js'/>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/aes.min.js'/>
+
+
 <!DOCTYPE html>
 <html>
 	<head>
